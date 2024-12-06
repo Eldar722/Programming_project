@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}Категории{% endblock %}
+
+{% block content%}
+{% if user.is_authenticated %}
+<section class="categories">
+    <div class="container">
+        <h2 class="title">Все категории</h2>
+        <div class="categories-list">
+            <a href="{% url 'jobs_page' %}" class="category-item">Все</a>
+            {% for category in categories %}
+            <a href="{% url 'jobs_by_category_page' slug=category.slug %}" class="category-item">{{ category.name }}</a>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% else %}
+<section class="access">
+    <div class="container">
+        <h1 class="title">Вы анонимный пользователь</h1>
+        <p class="dark-text">Чтобы работать с приложением вам нужно авторизоваться!</p>
+        <div class="access-action">
+            <a href="{% url 'sign_up_page'}" class="dark-btn">Регистрация</a>
+            <a href="{% url 'login_page'}" class="dark-btn">Авторизация</a>
+        </div>
+    </div>
+</section>
+{% endif %}
+{% endblock %}

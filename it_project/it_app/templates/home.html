@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block title %}Главная страница{% endblock %}
+
+{% block content %}
+<section class="categories">
+    <div class="container">
+        <h2 class="title">Категории</h2>
+        <div class="categories-list">
+            <a href="{% url 'jobs_page' %}" class="category-item">Все</a>
+            {% for category in categories %}
+            <a href="{% url 'jobs_by_category_page' slug=category.slug %}" class="category-item">{{ category.name }}</a>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+<section class="jobs">
+    <div class="container">
+        <h2 class="title">Актаульные вакансии</h2>
+        <div class="jobs-list">
+            {%for job in jobs %}
+            <div class="job-card">
+                <h3 class="job-card-title">{{ job.title }}</h3>
+                <h3 class="job-card-company">{{ job.company}}</h3>
+                <h3 class="job-card-title">{{ job.experience }}</h3>
+                <h3 class="job-card-title">
+                    {% if job.salary == "не указано" %}
+                    {{ job.salary }}
+                    {% else %}
+                    {{ job.salary }} &#8376
+                    {% endif %}
+                </h3>
+                <a href="{% url 'job_detail_page' pk=job.pk %}" class="dark-btn">Подписать контракт</a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}

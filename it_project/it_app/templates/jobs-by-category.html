@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ category.name }}{% endblock %}
+
+{% block content%}
+{% if user.is_authenticated %}
+<section class="jobs">
+    <div class="container">
+        <h2 class="title">{{ category.name }}</h2>
+        <div class="jobs-list">
+            {%for job in jobs %}
+            <div class="job-card">
+                <h3 class="job-card-title">{{ job.title }}</h3>
+                <h3 class="job-card-company">{{ job.company}}</h3>
+                <h3 class="job-card-title">{{ job.experience }}</h3>
+                <h3 class="job-card-title">
+                    {% if job.salary == "не указано" %}
+                    {{ job.salary }}
+                    {% else %}
+                    {{ job.salary }} &#8376
+                    {% endif %}
+                </h3>
+                <a href="{% url 'job_detail_page' pk=job.pk %}" class="dark-btn">Подписать контракт</a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% else %}
+<section class="access">
+    <div class="container">
+        <h1 class="title">Вы анонимный пользователь</h1>
+        <p class="dark-text">Чтобы работать с приложением вам нужно авторизоваться!</p>
+        <div class="access-action">
+            <a href="{% url 'sign_up_page'}" class="dark-btn">Регистрация</a>
+            <a href="{% url 'login_page'}" class="dark-btn">Авторизация</a>
+        </div>
+    </div>
+</section>
+{% endif %}
+{% endblock %}

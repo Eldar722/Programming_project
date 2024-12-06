@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="review-container">
+    <h1>Отзывы работодателей</h1>
+    {% if reviews %}
+        <ul class="review-list">
+            {% for review in reviews %}
+                <li>
+                    <div class="review-header">
+                        <span class="review-employer">От: {{ review.employer.username }}</span>
+                        <span class="review-date">{{ review.created_at|date:"Y-m-d H:i" }}</span>
+                    </div>
+                    <p class="review-content">{{ review.content }}</p>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p class="no-reviews">У Вас пока нет отзывов.</p>
+    {% endif %}
+</div>
+{% endblock %}

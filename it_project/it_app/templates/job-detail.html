@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ job.title }}{% endblock %}
+
+{% block content %}
+{% if user.is_authenticated %}
+<section class="job-detail">
+    <div class="container">
+        <h1 class="title">{{job.title}}</h1>
+        <h2 class="title">{{ job.company }}</h2>
+        <h3 class="job-detail-data">Опыт: <span>{{ job.experience }}</span></h3>
+        <h3 class="job-detail-data">Оклад: 
+            <span>
+            {% if job.salary == "не указано" %}
+            {{ job.salary }}
+            {% else %}
+            {{ job.salary }} &#8376
+            {% endif %}
+            </span>
+        </h3>
+        <p class="job-detail-content">Описание вакансии: <strong>{{ job.description }}</strong></p>
+        <div class="job-detail-skills">
+            <h3 class="job-detail-title">Нужные навыки</h3>
+            <p>{{ job.skills }}</p>
+        </div>
+        <div class="job-detail-skills">
+            <h3 class="job-detail-title">Контакты</h3>
+            <ul class="job-detail-address">
+                <li>{{ job.address}}</li>
+                <li>Телефон:{{ job.phone }}</li>
+                <li>E-mail: {{ job.email}}</li>
+            </ul>
+        </div>
+        <p class="jon-detail-content">Дата публикации: <strong>{{ job.created_at|date:"d.m.y"}}</strong></p>
+    </div>
+</section>
+{% else %}
+<section class="access">
+    <div class="container">
+        <h1 class="title">Вы анонимный пользователь</h1>
+        <p class="dark-text">Чтобы работать с приложением вам нужно авторизоваться!</p>
+        <div class="access-action">
+            <a href="{% url 'sign_up_page'}" class="dark-btn">Регистрация</a>
+            <a href="{% url 'login_page'}" class="dark-btn">Авторизация</a>
+        </div>
+    </div>
+</section>
+{% endif %}
+{% endblock %}

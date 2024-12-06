@@ -1,0 +1,456 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Joan&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Montserrat", sans-serif;
+}
+:root{
+    --light: rgba(230, 213, 184, 1);
+    --secondary: rgba(166, 123, 91, 1);
+    --success: rgba(113, 78, 38, 1);
+    --dark: rgba(113, 78, 38, 1);
+    --white: rgba(241, 250, 218, 1);
+
+}
+.container{
+    margin: 0 20px;
+}
+
+.header{
+    padding: 25px 0;
+    background-color: var(--secondary);
+}
+
+main{
+    background-color: var(--light);
+    min-height: 100vh;
+}
+.menu-button {
+    cursor: pointer;
+    border: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+}
+
+/* Контейнер выпадающего списка */
+.form-container select {
+    width: 100%;
+    padding: 10px;
+    background-color: var(--secondary, #f0f0f0); /* Серый фон по умолчанию */
+    border: 2px solid transparent; /* Прозрачный бордер по умолчанию */
+    border-radius: 5px;
+    color: var(--text-color, #333); /* Цвет текста */
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 10px;
+    cursor: pointer;
+    display: block;
+
+    /* Плавный переход при изменении состояния */
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Стрелочка для выпадающего списка */
+.form-container select::-ms-expand {
+    display: none; /* Убираем стандартную стрелочку в IE */
+}
+
+.form-container select::after {
+    content: '';
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    border: 5px solid transparent;
+    border-top-color: var(--text-color, #333); /* Цвет стрелки */
+    pointer-events: none;
+}
+
+/* При фокусе */
+.form-container select:focus {
+    border-color: var(--primary, #007BFF); /* Основной цвет при фокусе */
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.5); /* Мягкая подсветка */
+    outline: none;
+}
+
+/* При наведении */
+.form-container select:hover {
+    border-color: var(--primary-hover, #0056b3); /* Темнее основной цвет */
+}
+
+/* Поле с ошибкой */
+.form-container select.is-invalid {
+    border-color: var(--error-color, #dc3545);
+    box-shadow: 0 0 8px rgba(220, 53, 69, 0.5);
+}
+
+#menu-list{
+    background-color: var(--success);
+    display: none;
+    padding: 20px 0;
+    position: relative;
+}
+
+.menu-list, .menu-list__item{
+    list-style: none;
+}
+
+.menu-list{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.menu-list__link{
+    text-decoration: none;
+    color: var(--light);
+}
+
+.menu-list__link img{
+    position: relative;
+    top: 3px;
+    margin-right: 5px;
+}
+
+.category-item{
+    font-size: 12px;
+    background-color: var(--secondary);
+    border-radius: 30px;
+    padding: 10px 15px;
+    text-decoration: none;
+    color: var(--light);
+    display: inline-block;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    transition: 0.3s ease-in-out;
+}
+
+.category-item:hover{
+    background-color: var(--success);
+}
+
+.categories, .jobs, .job-detail, .auth{
+    padding: 30px 0;
+}
+
+.title{
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--dark);
+}
+
+.categories-list, .jobs-list{
+    margin: 20px 0;
+}
+
+.job-card{
+    background-color: var(--secondary);
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.job-card-title, .job-card-company{
+    color: var(--light);
+    font-size: 12px;
+    margin-bottom: 5px;
+}
+
+.job-card-title{
+    font-weight: 400;
+}
+
+.job-card-company{
+    font-weight: 600;
+}
+
+.dark-btn, .btn-success{
+    font-size: 12px;
+    text-decoration: none;
+    margin: 3px 0;
+    display: inline-block;
+    background-color: var(--dark);
+    padding: 10px 35px;
+    color: var(--light);
+    border-radius: 30px;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-success{
+    background-color: var(--success);
+    color: var(--light);
+    font-weight: 600;
+    padding: 10px 55px;
+    margin-bottom: 20px 0;
+}
+.job-detail .title{
+    margin-bottom: 10px;
+}
+.job-detail-data{
+    color: var(--dark);
+    margin-bottom: 10px;
+}
+
+.job-detail-data span{
+    font-weight: 400;
+}
+
+.job-detail-content{
+    font-size: 12px;
+    color: var(--dark);
+    margin-bottom: 20px;
+}
+
+.job-detail-skills {
+    padding: 20px;
+    background-color: var(--secondary);
+    color: var(--dark);
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+.job-detail-title{
+    margin-bottom: 10px;
+}
+
+.job-detail-skills p, .job-detail-address{
+    font-size: 12px;
+}
+
+.job-detail-skills li{
+    list-style: none;
+}
+
+.guide-img{
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.mb-30 {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--dark);
+    margin-bottom: 30px;
+}
+
+.help{
+    font-size: 12px;
+    text-align: center;
+    color: var(--dark);
+}
+
+.help-link{
+    font-weight: 600;
+    text-decoration: none;
+    color: var(--dark);
+}
+
+.auth form{
+    margin: 20px 0;
+}
+.auth label{
+    display: block;
+    color: var(--dark);
+    font-weight: 600;
+    margin: 10px 0;
+}
+
+.auth input{
+    width: 100%;
+    border: none;
+    padding: 10px;
+    background-color: var(--secondary);
+    border-radius: 5px;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.helptext{
+    display: none;
+}
+.access{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+.access .title{
+    text-align: center;
+}
+
+.access .dark-text{
+    text-align: center;
+    color: var(--dark);
+    font-size: 12px;
+    margin-bottom: 20px;
+}
+
+.access-action {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+/* Контейнер для формы */
+.form-container {
+    max-width: 600px;
+    margin: 10px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Заголовок */
+.form-container h1 {
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 20px;
+    color: #007BFF;
+}
+
+/* Поля формы */
+.form-container label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #555;
+}
+
+.form-container select,
+.form-container textarea,
+.form-container button {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+/* Кнопка отправки */
+.form-container button {
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.form-container button:hover {
+    background-color: #0056b3;
+}
+
+/* Дополнительные кнопки */
+.form-container .secondary-button {
+    background-color: #6c757d;
+    color: white;
+}
+
+.form-container .secondary-button:hover {
+    background-color: #5a6268;
+}
+
+/* Уведомления */
+.alert {
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    color: white;
+    text-align: center;
+}
+
+.alert-success {
+    background-color: #28a745;
+}
+
+.alert-error {
+    background-color: #dc3545;
+}
+
+/* Для мобильных устройств */
+@media (max-width: 600px) {
+    .form-container {
+        padding: 15px;
+    }
+}
+
+/* Контейнер для отзывов */
+.review-container {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Заголовок страницы */
+.review-container h1 {
+    font-size: 28px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 20px;
+    color: #007BFF;
+}
+
+/* Список отзывов */
+.review-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.review-list li {
+    padding: 15px;
+    margin-bottom: 10px;
+    background-color: #f5f5f5;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease;
+}
+
+.review-list li:hover {
+    transform: scale(1.02);
+}
+
+/* Заголовок отзыва */
+.review-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.review-header span {
+    font-size: 14px;
+    color: #666;
+}
+
+.review-header .review-employer {
+    font-weight: bold;
+    color: #333;
+}
+
+/* Текст отзыва */
+.review-content {
+    font-size: 16px;
+    color: #444;
+    line-height: 1.5;
+}
+
+/* Сообщение при отсутствии отзывов */
+.no-reviews {
+    text-align: center;
+    font-size: 18px;
+    color: #888;
+    padding: 20px;
+}
